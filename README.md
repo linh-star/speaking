@@ -1,132 +1,267 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Chúc mừng sinh nhật ✨</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
-      font-family: 'Quicksand', sans-serif;
-    }
-    .moon-icon {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 80px;
-      color: gold;
-      text-shadow: 0 0 12px gold, 0 0 24px yellow;
-      z-index: 3;
-      animation: glow 3s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 10px gold; }
-      to { text-shadow: 0 0 25px yellow, 0 0 35px orange; }
-    }
-    .star {
-      position: absolute;
-      font-size: 8px;
-      z-index: 1;
-      color: white;
-      animation: moveStar 10s linear infinite;
-      text-shadow: 0 0 4px white;
-      pointer-events: none;
-    }
-    @keyframes moveStar {
-      0% { transform: translateY(0) translateX(0); opacity: 0.3; }
-      50% { transform: translateY(-100px) translateX(40px); opacity: 1; }
-      100% { transform: translateY(-200px) translateX(-40px); opacity: 0; }
-    }
-    .message {
-      position: absolute;
-      font-weight: 600;
-      max-width: 300px;
-      line-height: 2.5;
-      word-break: break-word;
-      white-space: normal;
-      z-index: 2;
-      opacity: 0.9;
-      user-select: none;
-      animation: float 16s ease-in-out infinite;
-      text-shadow:
-        0 0 6px currentColor,
-        0 0 12px currentColor,
-        0 0 18px currentColor;
-      pointer-events: none;
-    }
-    @keyframes float {
-      0% { transform: translate(0, 0); opacity: 0; }
-      20% { opacity: 1; }
-      100% { transform: translate(-40px, -120vh); opacity: 0; }
-    }
-    audio {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 5;
-      width: 250px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài tập Speaking - Khánh Linh</title>
+<style>
+  body {
+    font-family: "Segoe UI", sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    line-height: 1.6;
+    margin: 30px;
+  }
+  h1 {
+    text-align: center;
+    color: #e74c3c;
+  }
+  h2 {
+    color: #2980b9;
+    margin-top: 35px;
+  }
+  h3 {
+    color: #16a085;
+    margin-top: 25px;
+  }
+  .question, .section {
+    margin-bottom: 25px;
+    padding: 10px 15px;
+    border-left: 4px solid #2980b9;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #2980b9;
+  }
+  button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  audio {
+    display: block;
+    margin-top: 8px;
+  }
+  .status {
+    font-size: 0.9em;
+    color: #888;
+  }
+</style>
 </head>
 <body>
 
-  <div class="moon-icon">🌙</div>
+<h1>Bài tập Speaking - Khánh Linh 🎙️</h1>
 
-  <audio id="bg-music" controls autoplay loop>
-    <source src="nhac.mp3" type="audio/mpeg">
-  </audio>
+<div id="questions"></div>
 
-  <script>
-    const stars = ['✦', '✧', '✨', '⭐'];
-    function createStar() {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.textContent = stars[Math.floor(Math.random() * stars.length)];
-      star.style.left = Math.random() * window.innerWidth + 'px';
-      star.style.top = Math.random() * window.innerHeight + 'px';
-      star.style.fontSize = (4 + Math.random() * 4) + 'px';
-      star.style.animationDuration = (8 + Math.random() * 4) + 's';
-      document.body.appendChild(star);
-      setTimeout(() => star.remove(), 12000);
-    }
-    setInterval(createStar, 200);
+<script>
+// ---------------------------
+// Part 1 & Part 3: từng câu ghi âm riêng
+// ---------------------------
+const part1Questions = [
+  { section: "Part 1 - Chatting", list: [
+    "Do you like chatting with friends?",
+    "What do you usually chat about with friends?",
+    "Do you prefer to chat with a group of people or with only one friend?",
+    "Do you prefer to communicate face-to-face or via social media?",
+    "Do you argue with friends?"
+  ]},
+  { section: "Part 1 - Shoes", list: [
+    "Do you like buying shoes? How often?",
+    "Have you ever bought shoes online?",
+    "How much money do you usually spend on shoes?",
+    "Do you prefer shoes that are comfortable or shoes that look nice?",
+    "Do you often buy shoes from famous brands?"
+  ]},
+  { section: "Part 1 - Going Out", list: [
+    "Do you bring food or snacks with you when going out?",
+    "Do you always take your mobile phone with you when going out?",
+    "Do you often bring cash with you?",
+    "How often do you use cash?"
+  ]},
+  { section: "Part 1 - Sharing", list: [
+    "Did your parents teach you to share when you were a child?",
+    "What kind of things do you like to share with others?",
+    "What kind of things are not suitable for sharing?",
+    "Who is the first person you would like to share good news with?"
+  ]},
+  { section: "Part 3 - Lost Your Way", list: [
+    "Why do some people get lost more easily than others?",
+    "Do you think it is important to be able to read a map?",
+    "Do you think it is important to do some preparation before you travel to new places?",
+    "How can people find their way when they are lost?",
+    "Is a paper map still necessary?",
+    "How do people react when they get lost?"
+  ]},
+  { section: "Part 3 - Traditional Story", list: [
+    "What kind of stories do children like?",
+    "What are the benefits of bedtime stories for children?",
+    "Why do most children like listening to stories before bedtime?",
+    "What can children learn from stories?",
+    "Do all stories for children have happy endings?",
+    "Is a good storyline important for a movie?"
+  ]}
+];
 
-    const messages = [
-      "chúc cậu sinh nhật vui vẻ", "tuổi mới mạnh khỏe tự tin", "7.5 IELTS nhaa", "mong cậu có thêm nhiều bạn mới", "chúc cậu vui vẻ yêu đời",
-      "cảm ơn vì đã cố gắng cho bản thân cậu", "Tuổi mới không còn phải khóc", "Ăn được ngủ được là tiên", "Khỏe mạnh khỏe mạnh khỏe mạnh nghen", "Thi đậu đại học nữaa",
-      "Thật ra là không biết you có xúc động hong nữa", "mà mong rằng chúng ta mãi là bạn tốt he", "suốt năm suôn sẻ 10 phân vẹn 10",
-      "trong con đường sắp tới mong rằng cậu có cái đầu lạnh", "và đừng quên một trái tim ấm",
-      "lâu lâu mà toi có rì không ổn cậu bỏ qua he", "lời thú nhận năm 17 tủi của alin:))",
-      "chỉ là thật sự không còn nhỏ để thích làm gì thì làm", "nhưng đủ lớn để làm những điều mình muốn", "17 tuổi vui vẻeee"
-    ];
+// ---------------------------
+// Part 2: 1 khung ghi âm cho toàn bộ
+// ---------------------------
+const part2Sections = [
+  { section: "Part 2 - Describe an occasion when you lost your way", list: [
+    "Where you were",
+    "What happened",
+    "How you felt",
+    "And explain how you found your way"
+  ]},
+  { section: "Part 2 - Describe an interesting traditional story", list: [
+    "What the story is about",
+    "When/how you knew it",
+    "Who told you the story",
+    "And explain how you felt when you first heard it"
+  ]}
+];
 
-    let colorIndex = 0;
-    const colors = ["hotpink", "aqua"]; // Đan xanh-hồng
+const container = document.getElementById("questions");
+let qIndex = 1;
 
-    function createMessage() {
-      const msg = document.createElement('div');
-      msg.className = 'message';
-      msg.textContent = messages[Math.floor(Math.random() * messages.length)];
-      msg.style.color = colors[colorIndex % 2];
-      colorIndex++;
-      msg.style.left = Math.random() * (window.innerWidth - 320) + 'px';
-      msg.style.top = window.innerHeight + Math.random() * 100 + 'px';
-      msg.style.fontSize = (15 + Math.random() * 4) + 'px';
-      msg.style.animationDuration = (12 + Math.random() * 4) + 's';
-      document.body.appendChild(msg);
-      setTimeout(() => msg.remove(), 18000);
-    }
+// ---- Part 1 & Part 3: tạo ghi âm riêng từng câu ----
+part1Questions.forEach(section => {
+  const h2 = document.createElement("h2");
+  h2.textContent = section.section;
+  container.appendChild(h2);
 
-    setInterval(createMessage, 350);
-  </script>
+  section.list.forEach(q => {
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `
+      <p><strong>Q${qIndex++}:</strong> ${q}</p>
+      <button class="startBtn">🎤 Ghi âm</button>
+      <button class="stopBtn" disabled>⏹ Dừng</button>
+      <button class="deleteBtn" disabled>🗑️ Xóa</button>
+      <audio controls></audio>
+      <p class="status"></p>
+    `;
+    container.appendChild(div);
+  });
+});
+
+// ---- Part 2: 1 khung ghi âm cho toàn bộ phần ----
+part2Sections.forEach(section => {
+  const h2 = document.createElement("h2");
+  h2.textContent = section.section;
+  container.appendChild(h2);
+
+  const div = document.createElement("div");
+  div.className = "section";
+  div.innerHTML = `<ol>` + section.list.map(item => `<li>${item}</li>`).join('') + `</ol>
+    <button id="startPart2">🎤 Ghi âm Part 2</button>
+    <button id="stopPart2" disabled>⏹ Dừng</button>
+    <button id="deletePart2" disabled>🗑️ Xóa</button>
+    <audio id="audioPart2" controls></audio>
+    <p id="statusPart2" class="status"></p>
+  `;
+  container.appendChild(div);
+
+  // Ghi âm Part 2
+  let mediaRecorder2;
+  let audioChunks2 = [];
+  let audioURL2 = null;
+  const startBtn2 = div.querySelector("#startPart2");
+  const stopBtn2 = div.querySelector("#stopPart2");
+  const deleteBtn2 = div.querySelector("#deletePart2");
+  const audioEl2 = div.querySelector("#audioPart2");
+  const statusEl2 = div.querySelector("#statusPart2");
+
+  startBtn2.onclick = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder2 = new MediaRecorder(stream);
+    audioChunks2 = [];
+
+    mediaRecorder2.ondataavailable = e => audioChunks2.push(e.data);
+    mediaRecorder2.onstop = () => {
+      const audioBlob = new Blob(audioChunks2, { type: "audio/mp3" });
+      audioURL2 = URL.createObjectURL(audioBlob);
+      audioEl2.src = audioURL2;
+      deleteBtn2.disabled = false;
+    };
+
+    mediaRecorder2.start();
+    startBtn2.disabled = true;
+    stopBtn2.disabled = false;
+    statusEl2.textContent = "🔴 Đang ghi âm Part 2...";
+  };
+
+  stopBtn2.onclick = () => {
+    mediaRecorder2.stop();
+    startBtn2.disabled = false;
+    stopBtn2.disabled = true;
+    statusEl2.textContent = "✅ Đã dừng ghi âm Part 2. Nghe lại bên dưới.";
+  };
+
+  deleteBtn2.onclick = () => {
+    audioEl2.src = "";
+    audioURL2 = null;
+    deleteBtn2.disabled = true;
+    statusEl2.textContent = "🗑️ Đã xóa ghi âm Part 2.";
+  };
+});
+
+// ---- Tạo ghi âm cho từng câu của Part 1 & Part 3 ----
+container.querySelectorAll(".question").forEach(q => {
+  let mediaRecorder;
+  let audioChunks = [];
+  let audioURL = null;
+
+  const startBtn = q.querySelector(".startBtn");
+  const stopBtn = q.querySelector(".stopBtn");
+  const deleteBtn = q.querySelector(".deleteBtn");
+  const audioEl = q.querySelector("audio");
+  const statusEl = q.querySelector(".status");
+
+  startBtn.onclick = async () => {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorder = new MediaRecorder(stream);
+    audioChunks = [];
+
+    mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+    mediaRecorder.onstop = () => {
+      const audioBlob = new Blob(audioChunks, { type: "audio/mp3" });
+      audioURL = URL.createObjectURL(audioBlob);
+      audioEl.src = audioURL;
+      deleteBtn.disabled = false;
+    };
+
+    mediaRecorder.start();
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+    statusEl.textContent = "🔴 Đang ghi âm...";
+  };
+
+  stopBtn.onclick = () => {
+    mediaRecorder.stop();
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    statusEl.textContent = "✅ Đã dừng ghi âm. Nghe lại bên dưới.";
+  };
+
+  deleteBtn.onclick = () => {
+    audioEl.src = "";
+    audioURL = null;
+    deleteBtn.disabled = true;
+    statusEl.textContent = "🗑️ Đã xóa ghi âm.";
+  };
+});
+</script>
 
 </body>
 </html>
